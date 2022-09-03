@@ -113,10 +113,9 @@ const SignUp = () => {
               <ArrowRightIcon fill='#ffffff' width='34px' height='34px' />
             </button>
           </div>
-          <OAuth />
         </form>
 
-        
+        <OAuth />
 
         <Link to='/sign-in' className="registerLink">
           Sign In Instead
