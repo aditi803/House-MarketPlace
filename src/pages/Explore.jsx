@@ -12,7 +12,7 @@ const Explore = () => {
             Explore
           </p>
           <main>
-            {/* <Slider /> */}
+            <Slider />
 
             <p className="exploreCategoryHeading">Categories</p>
             <div className="exploreCategories">
