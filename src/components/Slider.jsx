@@ -40,30 +40,36 @@ const Slider = () => {
     if (loading) {
         return <Spinner />
     }
-    
+
+    if(listings.length === 0) {
+      return <></>
+    }
+
     return listings && (
         <>
             <p className="exploreHeading">Recommended</p>
             <Swiper slidesPerView={1} pagination={{ clickable: true }}>
-                {listings.map(({ data, id }) => (
-                    <SwiperSlide
-                        key={id}
-                        onClick={() => navigate(`/categroy/${data.type}/${id}`)}>
-                        <div style={{ background: `url(${data.imgUrls[0]}) center
-                         no-repeat`, 
-                         backgroundSize:'cover',
-                        }}
-                        className="swiperSliderDiv"
-                        >
-                        <p className="swiperSlideText">{data.name}</p>
-                        <p className="swiperSliderPrice">
-                            ${data.discountedPrice ?? data.regularPrice}{''}
-                            {data.type === 'rent' && '/month'}
-                        </p>
-                        </div>
-                    </SwiperSlide>
-                ))}
-            </Swiper>
+          {listings.map(({ data, id }) => (
+            <SwiperSlide
+              key={id}
+              onClick={() => navigate(`/category/${data.type}/${id}`)}
+            >
+              <div
+                style={{
+                  background: `url(${data.imgUrls[0]}) center no-repeat`,
+                  backgroundSize: 'cover',
+                }}
+                className='swiperSlideDiv'
+              >
+                <p className='swiperSlideText'>{data.name}</p>
+                <p className='swiperSlidePrice'>
+                  ${data.discountedPrice ?? data.regularPrice}{' '}
+                  {data.type === 'rent' && '/ month'}
+                </p>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
         </>
     )
 }
