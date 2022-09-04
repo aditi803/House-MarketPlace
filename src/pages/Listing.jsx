@@ -110,8 +110,8 @@ const Listing = () => {
 
                 <div className="leafletContainer">
                     <MapContainer
-                        style={{ height: '100%', width: '100%' }}
                         center={[listing.geolocation.lat, listing.geolocation.lng]}
+                        style={{ height: '100%', width: '100%' }}
                         zoom={13}
                         scrollWheelZoom={false}
                     >
