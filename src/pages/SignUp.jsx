@@ -7,6 +7,7 @@ import {setDoc, doc, serverTimestamp} from 'firebase/firestore'
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg'
 import visibilityIcon from '../assets/svg/visibilityIcon.svg'
 import OAuth from '../components/OAuth'
+import Spinner from '../components/Spinner'
 
 const SignUp = () => {
 
@@ -18,6 +19,7 @@ const SignUp = () => {
     password: '',
   })
   const { name, email, password } = formData
+  const [loading, setLoading] = useState(false)
 
   const onChange = (e) => {
     setFormData((prevState) => ({ 
@@ -28,7 +30,7 @@ const SignUp = () => {
 
   const onSubmit = async(e) => {
     e.preventDefault()
-
+    setLoading(true)
     try {
       const auth = getAuth()
 
@@ -55,6 +57,8 @@ const SignUp = () => {
     } 
     catch (error) {
       toast.error("Something went wrong with Registration")
+    }finally{
+      setLoading(false)
     }
   }
 
@@ -117,10 +121,11 @@ const SignUp = () => {
 
         <OAuth />
 
-        <Link to='/sign-in' className="registerLink">
+        <Link to='/sign-in' className="registerLink" disabled={loading}>
           Sign In Instead
         </Link>
       </div>
+      {loading && <Spinner />}
     </>
   )
 }
