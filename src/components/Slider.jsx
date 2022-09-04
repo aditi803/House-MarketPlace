@@ -40,6 +40,7 @@ const Slider = () => {
     if (loading) {
         return <Spinner />
     }
+    
     return listings && (
         <>
             <p className="exploreHeading">Recommended</p>
